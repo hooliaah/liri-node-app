@@ -1,32 +1,46 @@
 // global variables - general
 require("dotenv").config();
-var keysFile = require('./keys.js');
-// var spotifyClient = new Spotify(keysFile.spotify);
+var keys = require('./keys.js');
 var request = require("request");
 var nodeArgs = process.argv;
 var requestType = process.argv[2];
 
 // twitter specific global variables
 var Twitter = require('twitter');
-var client = new Twitter(keysFile.twitterKey);
+var client = new Twitter(keys.twitterKey);
 var params = {screen_name: 'jukiegroth'};
+
+// Spotify specific global variables
+// var Spotify = require('node-spotify-api');
+// var spotify = new Spotify(keys.spotify);
 
 // OMDB specific global variables
 var movieName = "";
 
 // * `my-tweets`
-// client.get('statuses/user_timeline', params, function(error, tweets, response) {
-//     if (!error) {
-//         console.log(tweets);
-//         console.log(response);
-//         console.log("request sent to twitter");
-//     } else {
-//         console.log("there was an error" + JSON.stringify(error));
-//     }
-// });
+client.get('statuses/user_timeline', params, function(error, tweets, response) {
+    if (!error) {
+        console.log(tweets);
+        console.log(response);
+        console.log("request sent to twitter");
+    } else {
+        console.log("there was an error" + JSON.stringify(error));
+    }
+});
 
 
 // * `spotify-this-song`
+// spotify.search({
+//     type: 'track',
+//     query: 'All the Small Things',
+//     function(error, data) {
+//         if (error) {
+//             return console.log("error occured: " + error);
+//         }
+//         console.log(data);
+//     }
+// })
+
 
 // * `movie-this`
 
